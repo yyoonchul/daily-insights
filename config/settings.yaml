@@ -1,0 +1,12 @@
+# Daily Digest 설정
+
+# 요약 설정
+summary:
+  language: ko
+  bullets_per_article: 3
+  max_detail_lines: 30
+
+# 경로 설정
+paths:
+  inbox: inbox.md
+  content_dir: content
