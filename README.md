@@ -8,7 +8,7 @@
 
 `inbox.md`에 URL을 한 줄씩 추가한다.
 
-```
+```plaintext
 https://techcrunch.com/2025/02/16/some-article
 https://stripe.com/blog/api-update
 https://news.ycombinator.com/item?id=xxxxx  # 요약만
@@ -29,7 +29,7 @@ claude
 
 ## 구조
 
-```
+```plaintext
 ├── inbox.md                  # 링크를 넣는 곳
 ├── content/                  # 생성된 정리본
 │   └── YYYY/MM/DD.md
@@ -44,7 +44,7 @@ claude
 ## 출력 포맷
 
 - **간단 요약**: 글별 불렛 3개씩 위에 쭉
-- **상세 정리**: 글별 10~20줄 분석 아래에 쭉 (같은 순서)
+- **상세 정리**: 글별 10\~20줄 분석 아래에 쭉 (같은 순서)
 
 ## 메모 기능
 

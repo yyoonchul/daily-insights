@@ -1,12 +1,6 @@
 ---
-name: digest
-description: >
-  inbox.md에 쌓인 링크들을 읽고, 각 글의 본문을 수집·요약하여
-  날짜별 정리본 마크다운 파일을 생성합니다.
-  "다이제스트 만들어줘", "오늘 링크 정리해줘" 같은 요청 시 사용합니다.
-disable-model-invocation: true
-allowed-tools: Bash, Read, Write, Glob, Grep
----
+
+## name: digest description: &gt; inbox.md에 쌓인 링크들을 읽고, 각 글의 본문을 수집·요약하여 날짜별 정리본 마크다운 파일을 생성합니다. "다이제스트 만들어줘", "오늘 링크 정리해줘" 같은 요청 시 사용합니다. disable-model-invocation: true allowed-tools: Bash, Read, Write, Glob, Grep
 
 # Daily Digest 생성
 
@@ -36,14 +30,13 @@ inbox.md의 링크들을 수집·요약하여 `content/YYYY/MM/DD.md` 정리본�
 
 ### 3. 요약 생성
 
-수집된 본문을 기반으로 각 글마다 아래 항목을 생성한다.
-요약 프롬프트 상세 지침은 [prompt-summarize.md](prompt-summarize.md)를 참조.
+수집된 본문을 기반으로 각 글마다 아래 항목을 생성한다. 요약 프롬프트 상세 지침은 [prompt-summarize.md](prompt-summarize.md)를 참조.
 
 | 항목 | 규격 |
-|------|------|
+| --- | --- |
 | 카테고리 | AI, DevTools, Cloud, Security, Frontend, Backend, Business, Open Source, HN, Misc 중 택 1 |
 | 간단 요약 | 핵심 포인트 불렛 3개 (각 1줄) |
-| 상세 정리 | 20~30줄 분량의 상세 분석 |
+| 상세 정리 | 20\~30줄 분량의 상세 분석 |
 
 - 메모에 "요약만"이 포함되어 있으면 해당 글의 상세 정리를 생략한다.
 
@@ -63,6 +56,7 @@ inbox.md의 링크들을 수집·요약하여 `content/YYYY/MM/DD.md` 정리본�
 ### 6. 완료 보고
 
 아래 내용을 출력한다:
+
 - ✅ 처리된 글 수
 - 📄 생성된 파일 경로
 - ⚠️ 실패한 URL 목록 (있는 경우)
