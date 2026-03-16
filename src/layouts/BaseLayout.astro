@@ -1,0 +1,21 @@
+---
+import '../styles/global.css';
+interface Props { title: string; description?: string; }
+const { title } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+  </head>
+  <body class="flex flex-col min-h-screen max-w-2xl mx-auto px-6">
+    <header class="py-8">
+      <a href="/daily-insights" class="font-serif italic text-3xl hover:text-accent transition-colors">
+        Daily Insights
+      </a>
+    </header>
+    <main class="flex-1"><slot /></main>
+  </body>
+</html>
