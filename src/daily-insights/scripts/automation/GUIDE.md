@@ -102,14 +102,12 @@ claude auth login
 
 ## Codex 권한 기본값 (현재)
 
-- `run-digest-codex.sh`는 기본적으로 아래로 실행됩니다.
-  - `codex exec --dangerously-bypass-approvals-and-sandbox`
-- 즉, 승인/샌드박스 질의 없이 비대화식으로 실행되며, 외부 URL fetch도 도메인 화이트리스트 없이 처리합니다.
-- 필요하면 기본값을 환경변수로 바꿀 수 있습니다.
-  - `DIGEST_CODEX_BYPASS_APPROVALS_AND_SANDBOX=false`
-  - `DIGEST_CODEX_SANDBOX_MODE=workspace-write` (위 값을 `false`로 바꾼 경우에 사용)
-
-원하면 환경변수로 변경 가능합니다.
+- `run-digest-codex.sh` 기본 실행 모드:
+  - `codex exec -s workspace-write`
+- 즉, 기본값은 샌드박스 모드이며 승인 우회는 꺼져 있습니다.
+- 필요하면 환경변수로 더 강한/느슨한 모드로 변경할 수 있습니다.
+  - `DIGEST_CODEX_BYPASS_APPROVALS_AND_SANDBOX=true`
+  - `DIGEST_CODEX_SANDBOX_MODE=danger-full-access` (bypass=false일 때 사용)
 
 ```bash
 DIGEST_PUSH_REMOTE=origin DIGEST_PUSH_BRANCH=main ./scripts/automation/run-digest-codex.sh
@@ -125,20 +123,25 @@ DIGEST_PUSH_REMOTE=origin DIGEST_PUSH_BRANCH=main ./scripts/automation/run-diges
   - `DIGEST_ICLOUD_INBOX_PATH`  
     기본값: `~/Library/Mobile Documents/iCloud~is~workflow~my~workflows/Documents/daily-insights/inbox.md`
 - Codex 작업 추가:
-  - `DIGEST_CODEX_SANDBOX_MODE` (기본 `danger-full-access`)
-  - `DIGEST_CODEX_BYPASS_APPROVALS_AND_SANDBOX` (기본 `true`)
+  - `DIGEST_CODEX_SANDBOX_MODE` (기본 `workspace-write`)
+  - `DIGEST_CODEX_BYPASS_APPROVALS_AND_SANDBOX` (기본 `false`)
   - `DIGEST_PRE_SYNC_SHORTCUT_NAME` (기본 `digest`)
   - `DIGEST_PRE_SYNC_DELAY_SECONDS` (기본 `0`)
   - `DIGEST_PRE_SYNC_SHORTCUT_TIMEOUT_SECONDS` (기본 `300`)
 
 따라서 스케줄 실행 시마다 수동으로 경로나 권한 모드를 다시 입력할 필요가 없습니다.
 
+참고:
+
+- launchd job label prefix 기본값은 `com.dailyinsights.digest`입니다.
+- 필요하면 `setup` 실행 시점에 `DIGEST_LAUNCHD_LABEL_PREFIX`로 변경할 수 있습니다.
+
 ## 로그 위치
 
-- `~/Library/Logs/daily-insights/com.yoonchul.daily-insights.digest.codex.stdout.log`
-- `~/Library/Logs/daily-insights/com.yoonchul.daily-insights.digest.codex.stderr.log`
-- `~/Library/Logs/daily-insights/com.yoonchul.daily-insights.digest.claude.stdout.log`
-- `~/Library/Logs/daily-insights/com.yoonchul.daily-insights.digest.claude.stderr.log`
+- `~/Library/Logs/daily-insights/com.dailyinsights.digest.codex.stdout.log`
+- `~/Library/Logs/daily-insights/com.dailyinsights.digest.codex.stderr.log`
+- `~/Library/Logs/daily-insights/com.dailyinsights.digest.claude.stdout.log`
+- `~/Library/Logs/daily-insights/com.dailyinsights.digest.claude.stderr.log`
 
 ## 트러블슈팅
 
