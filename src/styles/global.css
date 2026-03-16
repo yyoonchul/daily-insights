@@ -1,8 +1,62 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+:root {
+  color-scheme: light;
+}
 
-@layer base {
-  html { @apply bg-bg text-text antialiased; }
-  body { @apply min-h-screen; }
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  color: #111;
+}
+
+body {
+  font-family: 'Times New Roman', Times, serif;
+  line-height: 1.5;
+}
+
+a {
+  color: #0000ee;
+}
+
+button {
+  font: inherit;
+}
+
+.site-shell {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1.25rem;
+}
+
+.site-header {
+  margin-bottom: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid #d6d6d6;
+}
+
+.site-title {
+  color: #111;
+  font-size: 2rem;
+  font-style: italic;
+  text-decoration: none;
+}
+
+.site-title:hover {
+  text-decoration: underline;
+}
+
+.page h1 {
+  margin: 0 0 1rem;
+  font-size: 1.75rem;
+  font-weight: normal;
+}
+
+.insight-list {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.insight-list li {
+  margin: 0.3rem 0;
 }

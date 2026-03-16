@@ -6,18 +6,12 @@ const dailyInsights = await getDailyInsightEntriesSorted();
 ---
 
 <BaseLayout title="Daily Insights - Yoonchul Yi">
-  <section class="py-8">
-    <h1 class="font-serif text-2xl mb-8">Daily Insights</h1>
-
-    <div class="space-y-3">
+  <section class="page">
+    <h1>Daily Insights</h1>
+    <ul class="insight-list">
       {dailyInsights.map(({ meta }) => (
-        <a
-          href={meta.href}
-          class="block font-mono text-sm text-sub hover:text-accent transition-colors"
-        >
-          {meta.isoDate}
-        </a>
+        <li><a href={meta.href}>{meta.isoDate}</a></li>
       ))}
-    </div>
+    </ul>
   </section>
 </BaseLayout>

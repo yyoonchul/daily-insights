@@ -1,149 +1,58 @@
-# 📰 Daily Tech Digest
+# Daily Insights
 
-## English
+Astro static site for bilingual daily tech digests.
 
-Collect article links in `content/inbox.md`, then run the digest skill to generate one daily markdown summary file.
+## Site Routes
 
-### How To Use
+- List: `/` and `/daily-insights`
+- Detail: `/daily-insights/YYYY/MM/DD/`
 
-1. Add links
-
-Put one URL per line in `content/inbox.md`:
-
-```plaintext
-https://techcrunch.com/2025/02/16/some-article
-https://stripe.com/blog/api-update
-https://news.ycombinator.com/item?id=xxxxx  # summary-only
-```
-
-2. Run digest
-
-Claude Code:
+## Local Development
 
 ```bash
-claude
-> /digest
+npm install
+npm run dev
 ```
 
-Codex:
-
-```text
-$digest
-```
-
-3. Check output
-
-- Local file: `content/YYYY/MM/DD.md`
-
-### What Happens
-
-1. Read URLs from inbox
-2. Fetch source content
-3. Generate digest at `content/YYYY/MM/DD.md`
-4. Update `content/index.json`
-5. Clear `content/inbox.md`
-
-### Structure
-
-```plaintext
-├── content/
-│   ├── inbox.md
-│   ├── index.json
-│   └── YYYY/MM/DD.md
-├── .codex/skills/digest/
-├── .claude/skills/digest/
-└── README.md
-```
-
-### Output Format
-
-- Quick summary: 3 bullets per article
-- Detailed notes: deeper analysis in the same order
-
-### Memo Tags
-
-Add `#` notes after URL lines:
-
-- `# summary-only`: skip detailed notes
-- `# important`: informational note only
-
-### Automation
-
-For Codex/Claude scheduler setup, on/off commands, and operations guide:
-
-- `scripts/automation/GUIDE.md`
-
----
-
-## 한국어
-
-`content/inbox.md`에 링크를 모아두고 digest 스킬을 실행하면, 하루 1개의 다이제스트 마크다운 파일이 생성됩니다.
-
-### 사용법
-
-1. 링크 추가
-
-`content/inbox.md`에 URL을 한 줄씩 입력:
-
-```plaintext
-https://techcrunch.com/2025/02/16/some-article
-https://stripe.com/blog/api-update
-https://news.ycombinator.com/item?id=xxxxx  # 요약만
-```
-
-2. 다이제스트 실행
-
-Claude Code:
+Build output is generated to `dist/`:
 
 ```bash
-claude
-> /digest
+npm run build
 ```
 
-Codex:
+## Digest Content Paths
 
-```text
-$digest
+Content is stored under `src/daily-insights/content/`:
+
+- Inbox: `src/daily-insights/content/inbox.md`
+- Index: `src/daily-insights/content/index.json`
+- Daily file: `src/daily-insights/content/YYYY/MM/DD.md`
+
+## Digest Skill Usage
+
+Digest skills are located under `src/daily-insights/.codex/skills/digest` and
+`src/daily-insights/.claude/skills/digest`.
+
+Run from the `src/daily-insights` directory:
+
+```bash
+cd src/daily-insights
 ```
 
-3. 결과 확인
+Then:
 
-- 로컬 파일: `content/YYYY/MM/DD.md`
+- Codex: `$digest`
+- Claude Code: `/digest`
 
-### 실행 시 동작
+Workflow:
 
-1. 인박스 URL 읽기
-2. 원문 수집
-3. `content/YYYY/MM/DD.md` 생성
-4. `content/index.json` 업데이트
-5. `content/inbox.md` 비우기
+1. Read URLs from `content/inbox.md` (relative to `src/daily-insights`)
+2. Generate `content/YYYY/MM/DD.md` (EN first, then KO)
+3. Update `content/index.json`
+4. Clear `content/inbox.md`
 
-### 구조
+## Automation
 
-```plaintext
-├── content/
-│   ├── inbox.md
-│   ├── index.json
-│   └── YYYY/MM/DD.md
-├── .codex/skills/digest/
-├── .claude/skills/digest/
-└── README.md
-```
+For Codex/Claude launchd schedule setup and operations:
 
-### 출력 포맷
-
-- 간단 요약: 글마다 3개 불렛
-- 상세 정리: 같은 순서로 심화 내용 정리
-
-### 메모 태그
-
-URL 뒤 `#` 메모:
-
-- `# 요약만`: 상세 정리 생략
-- `# 중요`: 참고용 메모
-
-### 자동 스케줄
-
-Codex/Claude 스케줄 설정, 켜기/끄기, 운영 가이드:
-
-- `scripts/automation/GUIDE.md`
+- `src/daily-insights/scripts/automation/GUIDE.md`
